@@ -36,3 +36,10 @@ animationClick("#pcourses","#courses", "bounceInRight");
 	d3.selectAll("#pcourses").style("cursor","default");
 });
 
+animationClick("#pgithub","#pgithub", "flipOutX");
+animationClick("#pgithub","#github", "tada");
+
+    d3.selectAll("#pgithub").on("click", function(){
+	d3.selectAll("#github").style("display","block");
+	d3.selectAll("#pgithub").style("cursor","default");
+});
