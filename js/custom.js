@@ -1,5 +1,5 @@
 //var p_headers = ["pabout","presume","pcourses","pgithub"];
-var p_div = ["about","resume","courses","github"];
+var p_div = ["about","resume","courses","github","photography"];
 
 function animationClick(trigger, element, animation){
 element = $(element);

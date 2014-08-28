@@ -1,10 +1,10 @@
-#about,#resume,#courses{
+#about,#resume,#courses, #photography{
 font-family: 'Poiret One', cursive;	
 margin-top: 0px;
 margin-bottom: 0px;
 }
 
-#pabout, #presume, #pcourses,#pgithub{
+#pabout, #presume, #pcourses,#pgithub,#pphotography{
 	cursor: pointer;
 	font-family: 'Gloria Hallelujah', cursive;
 }
