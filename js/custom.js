@@ -1,3 +1,6 @@
+//var p_headers = ["pabout","presume","pcourses","pgithub"];
+var p_div = ["about","resume","courses","github"];
+
 function animationClick(trigger, element, animation){
 element = $(element);
 trigger = $(trigger);
@@ -11,35 +14,55 @@ trigger.click(
 
     })};
 
-animationClick("#pabout","#pabout", "tada");
-animationClick("#pabout","#about", "bounceInRight");
+p_div.forEach(function(d){
 
-    d3.selectAll("#pabout").on("click", function(){
-	d3.selectAll("#about").style("display","block");
-	d3.selectAll("#pabout").style("cursor","default");
+	var header = "#p" + d;
+	var block = "#" + d;
+	var header_effect = "tada";
+	var block_effect = "bounceInRight";
+
+	if (header == "#pgithub"){
+		header_effect = "flipOutX";
+		block_effect = "tada";	
+	} 
+
+	animationClick(header,header, header_effect);
+	animationClick(header,block, block_effect);
+
+	d3.selectAll(header).on("click", function(){
+		d3.selectAll(block).style("display","block");
+		//d3.selectAll(header).style("cursor","default");
+	});
+
+	 var hiddenContent = $( "div" + block );
+ 
+        // Bind to the Read More link to toggle the
+        $( header ).click(
+            function( event ){
+ 
+                // Cancel the default event (this isn't a real link).
+               // event.preventDefault();
+ 
+                // Check to see if the content is visible.
+                if (hiddenContent.is( ":visible" )){
+ 
+                    // Hide it slowly.
+                    hiddenContent.slideToggle( 700 );
+					window.setTimeout( function(){
+						hiddenContent.removeClass('animated ' + block_effect);
+						$(header).removeClass("animated " + header_effect);
+					}, 720);
+                } else {
+ 					// showing it as a block instead - looks cooler in one sharp motion
+                    // Show it slowly.
+                    //hiddenContent.slideDown( 500 );
+ 					//hiddenContent.slideToggle();
+                }
+ 
+            }
+        );
+
 });
 
 
-animationClick("#presume","#presume", "tada");
-animationClick("#presume","#resume", "bounceInRight");
-
-    d3.selectAll("#presume").on("click", function(){
-	d3.selectAll("#resume").style("display","block");
-	d3.selectAll("#presume").style("cursor","default");
-});
-
-animationClick("#pcourses","#pcourses", "tada");
-animationClick("#pcourses","#courses", "bounceInRight");
-
-    d3.selectAll("#pcourses").on("click", function(){
-	d3.selectAll("#courses").style("display","block");
-	d3.selectAll("#pcourses").style("cursor","default");
-});
-
-animationClick("#pgithub","#pgithub", "flipOutX");
-animationClick("#pgithub","#github", "tada");
-
-    d3.selectAll("#pgithub").on("click", function(){
-	d3.selectAll("#github").style("display","block");
-	d3.selectAll("#pgithub").style("cursor","default");
-});
+       
