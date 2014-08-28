@@ -1,6 +1,9 @@
 //var p_headers = ["pabout","presume","pcourses","pgithub"];
 var p_div = ["about","resume","courses","github","photography"];
 
+
+
+
 function animationClick(trigger, element, animation){
 element = $(element);
 trigger = $(trigger);
@@ -14,6 +17,31 @@ trigger.click(
 
     })};
 
+function animationHover(trigger, element, animation){
+element = $(element);
+trigger = $(trigger);
+trigger.mouseover(
+    function() {
+        element.addClass('animated ' + animation);          
+        //wait for animation to finish before removing classes
+/*        window.setTimeout( function(){
+            element.removeClass('animated ' + animation);
+        }, 2000);       */    
+
+    })
+
+trigger.mouseleave(
+    function() {
+        element.removeClass('animated ' + animation);          
+        //wait for animation to finish before removing classes
+/*        window.setTimeout( function(){
+            element.removeClass('animated ' + animation);
+        }, 2000);       */    
+
+    })
+
+};
+
 p_div.forEach(function(d){
 
 	var header = "#p" + d;
@@ -22,11 +50,11 @@ p_div.forEach(function(d){
 	var block_effect = "bounceInRight";
 
 	if (header == "#pgithub"){
-		header_effect = "flipOutX";
-		block_effect = "tada";	
+		header_effect = "tada";
+		block_effect = "zoomIn";	
 	} 
 
-	animationClick(header,header, header_effect);
+	animationHover(header,header, header_effect);
 	animationClick(header,block, block_effect);
 
 	d3.selectAll(header).on("click", function(){
@@ -65,4 +93,10 @@ p_div.forEach(function(d){
 });
 
 
-       
+// animate social media circles
+var icons = ["facebook", "googleplus", "linkedin","githublogo"];
+icons.forEach(function(d){
+	var icon = d3.select("img#" + d);
+	icon.on("mouseover",function(){$("img#" +d).addClass("animated tada")});
+	icon.on("mouseleave",function(){$("img#" +d).removeClass("animated tada")});
+});
