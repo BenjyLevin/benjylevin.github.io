@@ -100,3 +100,67 @@ icons.forEach(function(d){
 	icon.on("mouseover",function(){$("img#" +d).addClass("animated tada")});
 	icon.on("mouseleave",function(){$("img#" +d).removeClass("animated tada")});
 });
+
+//magic
+var keystring = "38384040373937396665", input = "";
+var keys = [38,38,40,40,37,39,37,39,66,65];
+var start = false;
+var count = 0;
+var check;
+
+$(document).keydown(function(d){
+	key = d.keyCode;
+	
+	input += key;
+	if (!check){
+		check = window.setTimeout(function(){extracheck();},5000);
+	}
+
+
+	if (!start){
+		if (key==38)
+		{
+			start = true;
+
+		}
+	};
+
+	if (start){
+		//console.log(input);
+		if (key == keys[count])
+		{
+			console.log(key);
+			count++;
+		}
+		else{
+			restart();
+		}
+
+		if (count == 10)
+		{
+			window.clearTimeout(check);
+			input = "";
+			check = 0;
+
+			$('a#resume_show')[0].click();
+
+			restart();
+		}
+
+	}
+});
+
+function restart(){
+	count = 0;
+	start = false;
+};
+
+function extracheck(){
+	if (input.indexOf(keystring) >= 0)
+	{
+		$('a#resume_show')[0].click();
+	}
+	window.clearTimeout(check);
+	input = '';
+	check = 0;
+};
